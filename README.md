@@ -50,7 +50,7 @@ Make sure you have the following installed:
 
     The JAR file will be created in the `build/libs/` directory. You can run it with:
     ```bash
-    java -jar build/libs/LibraryManagementSystem-1.0.jar
+    java -jar [absolute_path_to_LibraryManagement-1.0.jar]
     ```
 
 ### How to Run the Tests
