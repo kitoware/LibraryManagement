@@ -1,0 +1,47 @@
+# Ignore Gradle build directory
+/build/
+/out/
+/.gradle/
+
+# Ignore Gradle Wrapper files
+.gradle/
+/gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# Ignore Eclipse/IntelliJ/NetBeans specific project files
+*.iml
+*.ipr
+*.iws
+.idea/
+*.classpath
+*.project
+*.settings/
+
+# Ignore log files
+*.log
+
+# Ignore generated files from the IDE
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignore Maven wrapper files
+.mvn/
+!**/mvnw
+!**/mvnw.cmd
+
+# Ignore temporary and system files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Ignore test reports
+/test-results/
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
