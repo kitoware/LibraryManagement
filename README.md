@@ -152,8 +152,8 @@ To run the JUnit tests, execute the following command:
 
 ## Functional Programming
 
-### Java Streams
-- Java Streams are used in `Library.java` to filter available books.
+### Java Streams and Lambda Functions
+- Java Streams and Lambda Functions are used in `Library.java` to filter available books.
 - **Location:** `Library.java`.
 
 ---

@@ -2,6 +2,7 @@ package library;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Library {
     private List<Book> books;  // Modularity: Book class handles book-related logic
@@ -26,15 +27,13 @@ public class Library {
         return "User " + name + " registered with ID " + userId;  // Code Quality: Readable Code
     }
 
-    // Functional Programming: Java Streams could be used to simplify this logic
+    // Functional Programming: Using Java Streams and lambda for finding books
     public List<String> findBooks(boolean availableOnly) {
-        List<String> availableBooks = new ArrayList<>();
-        for (Book book : books) {  // Functional Programming: Could use Stream API for filtering
-            if (!availableOnly || !book.isBorrowed()) {  // Defensive Programming: Avoid invalid states
-                availableBooks.add(book.getTitle());  // Information Hiding: Encapsulated book title access
-            }
-        }
-        return availableBooks;
+        // Streams: Using filter to process available books, Collectors.toList() to collect results
+        return books.stream()
+                .filter(book -> !availableOnly || !book.isBorrowed())  // Filter based on availability
+                .map(Book::getTitle)  // Mapping Book objects to their titles
+                .collect(Collectors.toList());  // Collecting results into a list
     }
 
     // Software Design: Modularity, this method delegates to user and book logic
@@ -59,23 +58,21 @@ public class Library {
         return user.returnBook(book);  // Polymorphism: returnBook behaves differently based on book state
     }
 
-    // Software Design: Encapsulation, hides the internal details of user search
+    // Software Design: Using Java Streams and lambda to simplify user search
     private User findUser(int userId) {
-        for (User user : users) {
-            if (user.getUserId() == userId) {  // Information Hiding: Use of getter method
-                return user;
-            }
-        }
-        return null;
+        // Streams: Using filter and findFirst to get the first matching user
+        return users.stream()
+                .filter(user -> user.getUserId() == userId)  // Filtering users by userId
+                .findFirst()  // Getting the first match
+                .orElse(null);  // Return null if no match is found
     }
 
-    // Software Design: Encapsulation, hides the internal details of book search
+    // Software Design: Using Java Streams and lambda to simplify book search
     private Book findBook(String bookTitle) {
-        for (Book book : books) {
-            if (book.getTitle().equals(bookTitle)) {  // Information Hiding: Encapsulated book title access
-                return book;
-            }
-        }
-        return null;
+        // Streams: Using filter and findFirst to get the first matching book
+        return books.stream()
+                .filter(book -> book.getTitle().equals(bookTitle))  // Filtering books by title
+                .findFirst()  // Getting the first match
+                .orElse(null);  // Return null if no match is found
     }
 }
