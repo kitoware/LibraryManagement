@@ -6,84 +6,84 @@ import org.junit.jupiter.api.Test;
 
 public class UserTest {
 
-    private User user;
-    private Book book1;
+    private User user;  // Modularity: User class manages user data
+    private Book book1; // Modularity: Book class manages book-related logic
     private Book book2;
 
-    // This method runs before each test to set up a fresh User and Books
+    // Software Construction: JUnit lifecycle method to set up fresh test data before each test case
     @BeforeEach
     public void setUp() {
-        user = new User(1, "Alice");
-        book1 = new Book("1984", "George Orwell");
+        user = new User(1, "Alice");  // Software Construction: Creating new User instance for each test
+        book1 = new Book("1984", "George Orwell");  // Modularity: Book instances encapsulate book-related data
         book2 = new Book("To Kill a Mockingbird", "Harper Lee");
     }
 
-    // Test case for successfully borrowing a book
+    // Testing Concepts: Unit test case for successfully borrowing a book
     @Test
     public void testBorrowBook() {
-        String result = user.borrowBook(book1);
+        String result = user.borrowBook(book1);  // Defensive Programming: Ensures valid borrow operation
         
-        // Verify the borrow message is correct and book is marked as borrowed
-        assertEquals("Alice borrowed 1984", result);
-        assertTrue(book1.isBorrowed(), "Book should be marked as borrowed");
+        // Assertions: Verifying correctness of borrow operation
+        assertEquals("Alice borrowed 1984", result);  // Testing Concepts: assertEquals used to verify correct output
+        assertTrue(book1.isBorrowed(), "Book should be marked as borrowed");  // Testing Concepts: assertTrue to validate book state
     }
 
-    // Test case for borrowing multiple books
+    // Testing Concepts: Unit test case for borrowing multiple books
     @Test
     public void testBorrowMultipleBooks() {
-        String result1 = user.borrowBook(book1);
+        String result1 = user.borrowBook(book1);  // Testing Concepts: Borrowing multiple books
         String result2 = user.borrowBook(book2);
         
-        // Verify both books were successfully borrowed
-        assertEquals("Alice borrowed 1984", result1);
+        // Assertions: Verifying correctness for both borrow operations
+        assertEquals("Alice borrowed 1984", result1);  // Assertions: Verifying individual borrow actions
         assertEquals("Alice borrowed To Kill a Mockingbird", result2);
         assertTrue(book1.isBorrowed(), "Book 1 should be marked as borrowed");
         assertTrue(book2.isBorrowed(), "Book 2 should be marked as borrowed");
     }
 
-    // Test case for attempting to borrow a book that is already borrowed
+    // Testing Concepts: Unit test case for preventing borrowing an already borrowed book
     @Test
     public void testCannotBorrowAlreadyBorrowedBook() {
-        book1.borrow();  // Simulate the book already being borrowed
+        book1.borrow();  // Defensive Programming: Simulating an already borrowed book
         String result = user.borrowBook(book1);
         
-        // Verify the second borrow attempt fails
-        assertEquals("1984 is already borrowed", result);
+        // Assertions: Verifying that borrowing a borrowed book is not allowed
+        assertEquals("1984 is already borrowed", result);  // Defensive Programming: Ensuring invalid state is handled
     }
 
-    // Test case for returning a borrowed book
+    // Testing Concepts: Unit test case for successfully returning a borrowed book
     @Test
     public void testReturnBorrowedBook() {
-        user.borrowBook(book1);  // First borrow the book
-        String result = user.returnBook(book1);
+        user.borrowBook(book1);  // Testing Concepts: Simulating a book being borrowed
+        String result = user.returnBook(book1);  // Defensive Programming: Simulating returning the borrowed book
         
-        // Verify the return message is correct and the book is no longer borrowed
-        assertEquals("Alice returned 1984", result);
-        assertFalse(book1.isBorrowed(), "Book should not be marked as borrowed after return");
+        // Assertions: Verifying the book was successfully returned
+        assertEquals("Alice returned 1984", result);  // Assertions: Verifying correct return message
+        assertFalse(book1.isBorrowed(), "Book should not be marked as borrowed after return");  // Assertions: Verifying the book is no longer borrowed
     }
 
-    // Test case for attempting to return a book that was never borrowed
+    // Testing Concepts: Unit test case for handling returning a book that was never borrowed
     @Test
     public void testCannotReturnNotBorrowedBook() {
-        String result = user.returnBook(book1);
+        String result = user.returnBook(book1);  // Defensive Programming: Ensuring returning an unborrowed book fails
         
-        // Verify the return attempt fails since the book was never borrowed
-        assertEquals("Alice does not have 1984 or it wasn't borrowed", result);
-        assertFalse(book1.isBorrowed(), "Book should not be marked as borrowed");
+        // Assertions: Verifying invalid return operation is handled
+        assertEquals("Alice does not have 1984 or it wasn't borrowed", result);  // Defensive Programming: Ensuring invalid state is avoided
+        assertFalse(book1.isBorrowed(), "Book should not be marked as borrowed");  // Assertions: Ensuring book remains unborrowed
     }
 
-    // Test case for returning a book that was borrowed by the same user
+    // Testing Concepts: Unit test case for returning only books that were actually borrowed by the user
     @Test
     public void testReturnOnlyBorrowedBooks() {
-        user.borrowBook(book1);
+        user.borrowBook(book1);  // Testing Concepts: Borrowing two books
         user.borrowBook(book2);
 
-        // Return only one of the books
+        // Simulating returning only one of the borrowed books
         String returnResult1 = user.returnBook(book1);
 
-        // Verify the first book was returned and the second book is still borrowed
-        assertEquals("Alice returned 1984", returnResult1);
-        assertFalse(book1.isBorrowed(), "Book 1 should be marked as returned");
-        assertTrue(book2.isBorrowed(), "Book 2 should still be borrowed");
+        // Assertions: Verifying the correct book was returned and the other is still borrowed
+        assertEquals("Alice returned 1984", returnResult1);  // Assertions: Ensuring the correct return message
+        assertFalse(book1.isBorrowed(), "Book 1 should be marked as returned");  // Assertions: Verifying book return status
+        assertTrue(book2.isBorrowed(), "Book 2 should still be borrowed");  // Assertions: Ensuring other book remains borrowed
     }
 }
