@@ -8,6 +8,9 @@
 /gradle/wrapper/gradle-wrapper.jar
 !gradle/wrapper/gradle-wrapper.properties
 
+# Ignore compiled class files (produced by javac)
+*.class
+
 # Ignore Eclipse/IntelliJ/NetBeans specific project files
 *.iml
 *.ipr
