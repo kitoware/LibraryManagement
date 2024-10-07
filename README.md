@@ -58,6 +58,7 @@ Make sure you have the following installed:
 To run the JUnit tests, execute the following command:
 ```bash
 ./gradlew test
+```
 
 # Midterm Exam Study Guide
 
