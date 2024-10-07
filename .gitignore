@@ -1,50 +1,39 @@
-# Ignore Gradle build directory
+# Ignore build directories and compiled class files
 /build/
 /out/
 /.gradle/
 
-# Ignore Gradle Wrapper files
-.gradle/
-/gradle/wrapper/gradle-wrapper.jar
-!gradle/wrapper/gradle-wrapper.properties
-
 # Ignore compiled class files (produced by javac)
 *.class
 
-# Ignore Eclipse/IntelliJ/NetBeans specific project files
+# Ignore IDE-specific files (for IntelliJ, Eclipse, NetBeans, etc.)
 *.iml
-*.ipr
-*.iws
 .idea/
 *.classpath
 *.project
 *.settings/
+.vscode/
+nbproject/
 
-# Ignore log files
-*.log
-
-# Ignore generated files from the IDE
-*.class
-*.jar
-*.war
-*.ear
-
-# Ignore Maven wrapper files
-.mvn/
-!**/mvnw
-!**/mvnw.cmd
-
-# Ignore temporary and system files
-*.swp
-*.swo
-*~
+# OS-specific files
 .DS_Store
 Thumbs.db
 
-# Ignore test reports
-/test-results/
-# Ignore Gradle project-specific cache directory
-.gradle
+# Ignore log files and temporary files
+*.log
+*.swp
+*.swo
+*~
 
-# Ignore Gradle build output directory
-build
+# Gradle wrapper files (keep gradle-wrapper.properties, ignore the JAR)
+gradle/wrapper/gradle-wrapper.jar
+
+# Ignore test results and reports
+/test-results/
+/build/reports/
+/build/tmp/
+
+# Ignore JAR, WAR, or other built artifacts (optional if you don't want to track them)
+*.jar
+*.war
+*.ear

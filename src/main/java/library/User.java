@@ -3,7 +3,6 @@ package library;
 import java.util.ArrayList;
 import java.util.List;
 
-// Single Responsibility: User only handles user-specific data and borrowed books
 public class User {
     private int userId;
     private String name;
@@ -33,5 +32,15 @@ public class User {
         } else {
             return name + " does not have " + book.getTitle() + " or it wasn't borrowed";
         }
+    }
+
+    // Getter for userId to access it outside this class
+    public int getUserId() {
+        return userId;
+    }
+
+    // Getter for user name (if needed in other parts of your program)
+    public String getName() {
+        return name;
     }
 }
