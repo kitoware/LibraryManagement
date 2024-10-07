@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a simple **Library Management System** implemented in Java using Gradle as the build tool. The system supports the following features:
+This project is a simple **Library Management System** implemented in Java using Gradle as the build tool for CS3140 (SDE) at UVA. The system supports the following features:
 - Adding books to the library
 - Registering users
 - Borrowing and returning books
