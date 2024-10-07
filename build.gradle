@@ -36,7 +36,7 @@ tasks.build {
 jar {
     manifest {
         attributes(
-            'Main-Class': 'library.Main'  // Adjust this to the main class of your project
+            'Main-Class': 'library.Main'  
         )
     }
 }
